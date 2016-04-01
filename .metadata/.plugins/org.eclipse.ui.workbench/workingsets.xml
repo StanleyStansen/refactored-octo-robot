@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1459531717671_0" label="DiscountSystem" name="DiscountSystem">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/DiscountSystem" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HandleCustomerService" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/DiscountLogic" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HandleCustomerClient" type="4"/>
+</workingSet>
+</workingSetManager>
