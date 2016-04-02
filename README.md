@@ -68,3 +68,8 @@ mysql> show columns from Orders;<br/>
 <br/><br/>
 ## Infos zur VM
 Passwort: wertwert
+
+## Hibernate funktioniert nicht?
+- Configure Build Path<br>
+- Add External JARs<br>
+- /home/igt/Eclipse Components/hibernate-release-5.1.0.Final/lib/required --> Alle Files einbinden..
