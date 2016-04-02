@@ -2,8 +2,18 @@ package discount.model;
 
 public class Order {
 	private int id;
-	private float turnover;
+	private double turnover;
 	private int customerId;
+	
+	public Order() {
+		super();
+	}
+	
+	public Order(double d, int customerId) {
+		super();
+		this.turnover = d;
+		this.customerId = customerId;
+	}
 	
 	// Getters und Setters
 	public int getId() {
@@ -12,10 +22,10 @@ public class Order {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public float getTurnover() {
+	public double getTurnover() {
 		return turnover;
 	}
-	public void setTurnover(float turnover) {
+	public void setTurnover(double turnover) {
 		this.turnover = turnover;
 	}
 	public int getCustomerId() {
@@ -24,5 +34,7 @@ public class Order {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
+	
+	
 	
 }

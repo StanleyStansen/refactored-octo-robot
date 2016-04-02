@@ -24,10 +24,12 @@ public class Customer {
 	 * @param lastname
 	 * @param birthday
 	 */
-	public Customer (String forename, String lastname, Date birthday) {
+	public Customer () {
+		super();
+	}
+	public Customer (String forename, String lastname) {
 		this.forename = forename;
 		this.lastname = lastname;
-		this.birthday = birthday;
 	}
 
 	// Getters / Setters
