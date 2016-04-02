@@ -4,7 +4,7 @@ public class Order {
 	private int id;
 	private double turnover;
 	private int customerId;
-	
+		
 	public Order() {
 		super();
 	}
