@@ -25,3 +25,10 @@ public class HibernateUtil {
     }
 
 }
+
+/*
+http://www.javatpoint.com/example-to-create-hibernate-application-in-eclipse-ide
+http://blog.sencide.com/2011/03/hibernate-tutorial-for-beginners.html
+http://www.mastertheboss.com/jboss-frameworks/hibernate-jpa/quickstart-tutorials-hibernate-jpa/hibernate-tutorial-with-eclipse?showall=&start=1
+http://www.mastertheboss.com/jboss-frameworks/hibernate-jpa/quickstart-tutorials-hibernate-jpa/hibernate-tutorial-with-eclipse?showall=&start=1
+*/
