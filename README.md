@@ -1,74 +1,70 @@
 # refactored-octo-robot
 
 ## Infos zur Datenbank
-Falls ihr Zugriff auf MySQL braucht, so könnt ihr wie folgt eine eigene Datenbank einrichten:<br/><br/><br/><br/>
-
-1.) Konsole öffnen und dort als root anmelden mit dem Befehl: "mysql -uroot -p" und dem Passwort "wertwert".
-2.) Datenbank erstellen: "CREATE DATABAES discountsystem;"
-3.) Datenbank auswählen: "USE discountsystem;
-4.) Tabllen erstellen:
-
-CREATE TABLE Customers
-(
-CustomerId int,
-Forename varchar(200),
-Lastname varchar(200),
-Birthday date,
-Street varchar(200),
-HouseNumber INT,
-Postcode varchar(5),
-City varchar(200),
-PRIMARY KEY (CustomerId)
+Falls ihr Zugriff auf MySQL braucht, so könnt ihr wie folgt eine eigene Datenbank einrichten:
+<br/><br/>
+1.) Konsole öffnen und dort als root anmelden mit dem Befehl: "mysql -uroot -p" und dem Passwort "wertwert".<br/>
+2.) Datenbank erstellen: "CREATE DATABAES discountsystem;"<br/>
+3.) Datenbank auswählen: "USE discountsystem;<br/>
+4.) Tabllen erstellen:<br/>
+<br/><br/>
+CREATE TABLE Customers<br/>
+(<br/>
+CustomerId int,<br/>
+Forename varchar(200),<br/>
+Lastname varchar(200),<br/>
+Birthday date,<br/>
+Street varchar(200),<br/>
+HouseNumber INT,<br/>
+Postcode varchar(5),<br/>
+City varchar(200),<br/>
+PRIMARY KEY (CustomerId)<br/>
 );
-
-
-CREATE TABLE Orders
-(
-OrderId int,
-Turnover float,
-CustomerId int,
-PRIMARY KEY (OrderId), 
-FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
-);
-
+<br/><br/>
+CREATE TABLE Orders<br/>
+(<br/>
+OrderId int,<br/>
+Turnover float,<br/>
+CustomerId int,<br/>
+PRIMARY KEY (OrderId), <br/>
+FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)<br/>
+);<br/>
+<br/><br/>
 5.) Überprüfen mit "show tables;"
-
+<br/><br/>
 Ergebnis sollte so aussehen:
-
-+--------------------------+
-| Tables_in_discountsystem |
-+--------------------------+
-| Customers                |
-| Orders                   |
-+--------------------------+
-
+<br/><br/>
++--------------------------+<br/>
+| Tables_in_discountsystem |<br/>
++--------------------------+<br/>
+| Customers                |<br/>
+| Orders                   |<br/>
++--------------------------+<br/>
+<br/><br/>
 6.) Überprüfen der Spalten mit "show columns from Customers;" bzw. "show columns from Orders;"
-
-mysql> show columns from Customers;
-+-------------+--------------+------+-----+---------+-------+
-| Field       | Type         | Null | Key | Default | Extra |
-+-------------+--------------+------+-----+---------+-------+
-| CustomerId  | int(11)      | NO   | PRI | 0       |       |
-| Forename    | varchar(200) | YES  |     | NULL    |       |
-| Lastname    | varchar(200) | YES  |     | NULL    |       |
-| Birthday    | date         | YES  |     | NULL    |       |
-| Street      | varchar(200) | YES  |     | NULL    |       |
-| HouseNumber | int(11)      | YES  |     | NULL    |       |
-| Postcode    | varchar(5)   | YES  |     | NULL    |       |
-| City        | varchar(200) | YES  |     | NULL    |       |
-+-------------+--------------+------+-----+---------+-------+
-8 rows in set (0.00 sec)
-
-mysql> show columns from Orders;
-+------------+---------+------+-----+---------+-------+
-| Field      | Type    | Null | Key | Default | Extra |
-+------------+---------+------+-----+---------+-------+
-| OrderId    | int(11) | NO   | PRI | 0       |       |
-| Turnover   | float   | YES  |     | NULL    |       |
-| CustomerId | int(11) | YES  | MUL | NULL    |       |
-+------------+---------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
-
-
+<br/><br/>
+mysql> show columns from Customers;<br/>
++-------------+--------------+------+-----+---------+-------+<br/>
+| Field       | Type         | Null | Key | Default | Extra |<br/>
++-------------+--------------+------+-----+---------+-------+<br/>
+| CustomerId  | int(11)      | NO   | PRI | 0       |       |<br/>
+| Forename    | varchar(200) | YES  |     | NULL    |       |<br/>
+| Lastname    | varchar(200) | YES  |     | NULL    |       |<br/>
+| Birthday    | date         | YES  |     | NULL    |       |<br/>
+| Street      | varchar(200) | YES  |     | NULL    |       |<br/>
+| HouseNumber | int(11)      | YES  |     | NULL    |       |<br/>
+| Postcode    | varchar(5)   | YES  |     | NULL    |       |<br/>
+| City        | varchar(200) | YES  |     | NULL    |       |<br/>
++-------------+--------------+------+-----+---------+-------+<br/>
+<br/><br/>
+mysql> show columns from Orders;<br/>
++------------+---------+------+-----+---------+-------+<br/>
+| Field      | Type    | Null | Key | Default | Extra |<br/>
++------------+---------+------+-----+---------+-------+<br/>
+| OrderId    | int(11) | NO   | PRI | 0       |       |<br/>
+| Turnover   | float   | YES  |     | NULL    |       |<br/>
+| CustomerId | int(11) | YES  | MUL | NULL    |       |<br/>
++------------+---------+------+-----+---------+-------+<br/>
+<br/><br/>
 ## Infos zur VM
 Passwort: wertwert
