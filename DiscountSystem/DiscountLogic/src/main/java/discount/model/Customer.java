@@ -25,6 +25,7 @@ public class Customer {
 	 * @param birthday
 	 */
 	public Customer () {
+		
 		super();
 	}
 	public Customer (String forename, String lastname) {
