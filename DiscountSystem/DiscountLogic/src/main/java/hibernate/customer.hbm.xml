@@ -10,36 +10,36 @@ Hibernate needs to know how to load and store objects of the persistent class. T
 <hibernate-mapping>
  <class name="com.hib.Customer" table="customers" >
 
-  <id name="id" type="int" column="id" >
+  <id name="id" type="int" column="CustomerId" >
    <generator class="native"/>
   </id>
 
   <property name="forename">
-   <column name="forename" />
+   <column name="Forename" />
   </property>
 
   <property name="lastname">
-   <column name="lastname"/>
+   <column name="Lastname"/>
   </property>
 
   <property name="birthday">
-   <column name="birthday"/>
+   <column name="Birthday"/>
   </property>
 
   <property name="street">
-   <column name="street"/>
+   <column name="Street"/>
   </property>
 
   <property name="houseNumber">
-   <column name="houseNumber"/>
+   <column name="HouseNumber"/>
   </property>
 
   <property name="postcode">
-   <column name="postcode"/>
+   <column name="Postcode"/>
   </property>
 
   <property name="city">
-   <column name="city"/>
+   <column name="City"/>
   </property>
 
  </class>

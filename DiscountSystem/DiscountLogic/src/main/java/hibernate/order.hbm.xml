@@ -10,16 +10,16 @@ Hibernate needs to know how to load and store objects of the persistent class. T
 <hibernate-mapping>
  <class name="com.hib.Order" table="orders" >
 
-  <id name="id" type="int" column="id" >
+  <id name="id" type="int" column="OrderId" >
    <generator class="native"/>
   </id>
 
   <property name="turnover">
-   <column name="turnover" />
+   <column name="Turnover" />
   </property>
 
   <property name="customerId">
-   <column name="customerId"/>
+   <column name="CustomerId"/>
   </property>
 
  </class>
