@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate needs to know how to load and store objects of the persistent class. This is where the Hibernate mapping file comes into play. The mapping file tells Hibernate what table in the database it has to access, and what columns in that table it should use.
+-->
+
+<hibernate-mapping>
+ <class name="com.hib.Customer" table="customers" >
+
+  <id name="id" type="int" column="id" >
+   <generator class="native"/>
+  </id>
+
+  <property name="forename">
+   <column name="forename" />
+  </property>
+
+  <property name="lastname">
+   <column name="lastname"/>
+  </property>
+
+  <property name="birthday">
+   <column name="birthday"/>
+  </property>
+
+  <property name="street">
+   <column name="street"/>
+  </property>
+
+  <property name="houseNumber">
+   <column name="houseNumber"/>
+  </property>
+
+  <property name="postcode">
+   <column name="postcode"/>
+  </property>
+
+  <property name="city">
+   <column name="city"/>
+  </property>
+
+ </class>
+</hibernate-mapping>
