@@ -1,7 +1,8 @@
 # refactored-octo-robot
 
 ## Infos zur Datenbank
-Falls ihr Zugriff auf MySQL braucht, so könnt ihr wie folgt eine eigene Datenbank einrichten:
+Falls ihr Zugriff auf MySQL braucht, so könnt ihr wie folgt eine eigene Datenbank einrichten:<br/><br/><br/><br/>
+
 1.) Konsole öffnen und dort als root anmelden mit dem Befehl: "mysql -uroot -p" und dem Passwort "wertwert".
 2.) Datenbank erstellen: "CREATE DATABAES discountsystem;"
 3.) Datenbank auswählen: "USE discountsystem;
