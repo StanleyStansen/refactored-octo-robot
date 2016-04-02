@@ -4,13 +4,13 @@
 Falls ihr Zugriff auf MySQL braucht, so könnt ihr wie folgt eine eigene Datenbank einrichten:
 <br/><br/>
 1.) Konsole öffnen und dort als root anmelden mit dem Befehl: "mysql -uroot -p" und dem Passwort "wertwert".<br/>
-2.) Datenbank erstellen: "CREATE DATABAES discountsystem;"<br/>
+2.) Datenbank erstellen: "CREATE DATABASE discountsystem;"<br/>
 3.) Datenbank auswählen: "USE discountsystem;<br/>
 4.) Tabllen erstellen:<br/>
 <br/><br/>
 CREATE TABLE Customers<br/>
 (<br/>
-CustomerId int,<br/>
+CustomerId int NOT NULL AUTO_INCREMENT,<br/>
 Forename varchar(200),<br/>
 Lastname varchar(200),<br/>
 Birthday date,<br/>
@@ -23,7 +23,7 @@ PRIMARY KEY (CustomerId)<br/>
 <br/><br/>
 CREATE TABLE Orders<br/>
 (<br/>
-OrderId int,<br/>
+OrderId int NOT NULL AUTO_INCREMENT,<br/>
 Turnover float,<br/>
 CustomerId int,<br/>
 PRIMARY KEY (OrderId), <br/>
