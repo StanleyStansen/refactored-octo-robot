@@ -8,7 +8,7 @@ Hibernate needs to know how to load and store objects of the persistent class. T
 -->
 
 <hibernate-mapping>
- <class name="com.hib.Customer" table="customers" >
+ <class name="discount.model.Customer" table="customers" >
 
   <id name="id" type="int" column="CustomerId" >
    <generator class="native"/>
