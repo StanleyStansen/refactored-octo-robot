@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;DiscountService/src&apos;&#x0A;- Original project: &apos;DiscountLogic&apos;&#x0A;- Destination element: &apos;DiscountService/src&apos;&#x0A;- Original elements:&#x0A;     discount.model.HibernateUtil.java&#x0A;     discount.model.Order.java&#x0A;     discount.model.Customer.java&#x0A;     discount.model.InitializeDatabase.java" description="Copy compilation units" destination="=DiscountService/src" element1="/src\/main\/java&lt;discount.model{HibernateUtil.java" element2="/src\/main\/java&lt;discount.model{Order.java" element3="/src\/main\/java&lt;discount.model{Customer.java" element4="/src\/main\/java&lt;discount.model{InitializeDatabase.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1459670402260" units="4" version="1.0"/>
+</session>

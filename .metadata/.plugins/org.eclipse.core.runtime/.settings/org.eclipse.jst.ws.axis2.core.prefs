@@ -1,0 +1,5 @@
+axis2RuntimeLocation=/home/igt/Eclipse Components/axis2-1.7.1
+cleintDatabinding=ADB
+clientTestcase=true
+eclipse.preferences.version=1
+serviceDatabinding=ADB
