@@ -1,6 +1,9 @@
 package discount.model;
 
 import java.sql.Date;
+import java.util.List;
+
+import org.hibernate.*;
 
 /**
  * This class implements the entity "Customer".
@@ -13,11 +16,8 @@ public class Customer {
 	private int id;
 	private String forename;
 	private String lastname;
-	private String street;
-	private String houseNumber;
-	private String postcode;
-	private String city;
 	private Date birthday;
+	private CustomerAddress address;
 	
 	/**
 	 * The constructor of a customer needs only three attributes due to the assumption a customer does not neccessarely need to give his or her adress.
@@ -25,14 +25,15 @@ public class Customer {
 	 * @param birthday
 	 */
 	public Customer () {
-		
 		super();
 	}
-	public Customer (String forename, String lastname) {
+	public Customer (String forename, String lastname, Date birthday, CustomerAddress address) {
 		this.forename = forename;
 		this.lastname = lastname;
+		this.birthday = birthday;
+		this.address = address;
 	}
-
+	
 	// Getters / Setters
 	public int getId() {
 		return id;
@@ -58,44 +59,24 @@ public class Customer {
 		this.lastname = lastname;
 	}
 
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getHouseNumber() {
-		return houseNumber;
-	}
-
-	public void setHouseNumber(String houseNumber) {
-		this.houseNumber = houseNumber;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
 	public Date getBirthday() {
 		return birthday;
 	}
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+	
+	public CustomerAddress getAddress() {
+		return address;
+	}
+	public void setAddress(CustomerAddress address) {
+		this.address = address;
+	}
+	
+	public String toString() {
+		return "User-ID " +  this.getId() + ": \n Vorname: " + this.getForename() + "\n Nachname: " + this.getLastname() + "\n Geburtsdatum: " + this.getBirthday() + "\n Straße: " + this.address.getStreet() + "\n PLZ: " + this.address.getPostcode() + "\n Stadt: " + this.address.getCity() + ".";
+		//return "User-ID " + this.getCustomerId() + ": " + this.getForename() + " " + this.getLastname();
 	}
 	
 	

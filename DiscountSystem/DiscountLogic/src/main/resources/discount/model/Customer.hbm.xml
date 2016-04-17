@@ -8,39 +8,26 @@ Hibernate needs to know how to load and store objects of the persistent class. T
 -->
 
 <hibernate-mapping>
- <class name="discount.model.Customer" table="Customers" >
-
-  <id name="id" type="int" column="CustomerId" >
-   <generator class="native"/>
-  </id>
+ <class name="discount.model.Customer" table="CUSTOMER" >
+  <id name="Id" type="java.lang.Integer">
+	<column name="C_ID" />
+	<generator class="identity" />
+ </id>
 
   <property name="forename">
-   <column name="Forename" />
+   <column name="C_FNAME" />
   </property>
 
   <property name="lastname">
-   <column name="Lastname"/>
+   <column name="C_LNAME"/>
   </property>
 
   <property name="birthday">
-   <column name="Birthday"/>
+   <column name="C_BIRTHDATE"/>
   </property>
-
-  <property name="street">
-   <column name="Street"/>
-  </property>
-
-  <property name="houseNumber">
-   <column name="HouseNumber"/>
-  </property>
-
-  <property name="postcode">
-   <column name="Postcode"/>
-  </property>
-
-  <property name="city">
-   <column name="City"/>
-  </property>
+ 
+  <one-to-one name="address" class="discount.model.CustomerAddress"
+			cascade="save-update"></one-to-one>
 
  </class>
 </hibernate-mapping>
