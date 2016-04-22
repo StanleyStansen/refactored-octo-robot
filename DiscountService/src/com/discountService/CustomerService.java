@@ -5,9 +5,14 @@ import discount.model.DataHandler;
 
 public class CustomerService {
 
-	public Customer getCustomer (String forename, String lastname) {
-		DataHandler h = new DataHandler();
-		return h.getCustomer(forename, lastname);
+	private DataHandler dh = new DataHandler();
+	
+	public Customer getCustomer (int id) {
+		return dh.getCustomer(id);
+	}
+	
+	public boolean checkDiscount(Customer c) {
+		return dh.checkDiscount(c);
 	}
 
 }

@@ -2,8 +2,8 @@ package discount.model;
 
 public interface DataHandlerAPI {
 	
-	public Customer getCustomer(String forename, String lastname);
+	public Customer getCustomer(int id);
 	
-	public boolean isDiscountable(double turnover);
+	public boolean checkDiscount(Customer c);
 
 }
