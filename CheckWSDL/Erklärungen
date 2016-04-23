@@ -1,0 +1,19 @@
+Implementieren Sie ein Tool (z.B. in Java und ggf. als Web Dienst), das eine beliebige WSDL entgegennimmt und diese
+auf Wohlgeformtheit und Validität überprüft!
+
+
+
+XML hier:
+
+Wolgeformt?
+- Enthält Prolog mit der XML-Version?
+<?xml version="1.0" encoding ="UTF-8"?>
+
+- Hat genau 1 Wurzelelement?
+- jedes öffnende Tag ein schließendes Tag gegenüber steht?
+- alle Elemente korrekt verschachtelt sind
+- kein Element 2 Attribute mit den selben Namen hat
+- alle Angegeben Attribute einen Wert haben
+- Alle Attribute in 'einfachen' oder "doppelten" Anführungszeichen stehen
+- Entitäten
+- Umlaute direkt nutzbar, sofern richtige Codierung gewählt 
