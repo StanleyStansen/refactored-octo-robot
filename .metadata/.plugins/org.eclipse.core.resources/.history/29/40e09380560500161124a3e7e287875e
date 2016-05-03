@@ -1,0 +1,21 @@
+package com.discountService;
+
+import discount.model.Customer;
+import discount.model.Main;
+
+public class CustomerService {
+
+	private DataHandler dh;
+	
+	
+	public Customer getCustomer (int id) {
+		
+	}
+	
+	
+	public Customer getCustomer (String forename, String lastname) {
+		Main h = new Main();
+		return h.getCustomer(forename, lastname);
+	}
+
+}

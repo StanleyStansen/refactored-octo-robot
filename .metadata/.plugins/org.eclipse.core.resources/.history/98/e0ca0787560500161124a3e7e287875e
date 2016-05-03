@@ -1,0 +1,19 @@
+package com.discountService;
+
+import discount.model.Customer;
+import discount.model.DataHandler;
+import discount.model.Main;
+
+public class CustomerService {
+
+	private DataHandler dh = new DataHandler();
+	
+	public Customer getCustomer (int id) {
+		return dh.getCustomer(id);
+	}
+	
+	public checkDiscount(Customer c) {
+		return dh.checkDiscount(c);
+	}
+
+}
