@@ -18,7 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import com.discoverer.wsdlDiscoverer.*;
 
-public class FilterByIncludedWords implements FilterStrategy {
+public class FilterByIncludedWords extends Filter {
 
 	private List<String> keyWords;
 	DocumentBuilderFactory dbFactory;
@@ -28,8 +28,8 @@ public class FilterByIncludedWords implements FilterStrategy {
 		this(new LinkedList<String>());
 	}
 
-	public FilterByIncludedWords(List<String> filterStrings) {
-		this.keyWords = filterStrings;
+	public FilterByIncludedWords(List<String> keyWords) {
+		this.keyWords = keyWords;
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		try {
 			dBuilder = dbFactory.newDocumentBuilder();
@@ -39,23 +39,21 @@ public class FilterByIncludedWords implements FilterStrategy {
 	}
 
 	@Override
-	public Set<WsdlResult> filterWsdls(List<String> uris) throws SAXException, IOException {
-		Set<WsdlResult> resultSet = new TreeSet<WsdlResult>();
+	public Set<WsdlResult> filterWsdls(Set<WsdlResult> resultSet) throws SAXException, IOException {
+		
+		if (resultSet != null) {
+			for (WsdlResult r : resultSet) {
+				// Hier ï¿½berprï¿½fen, ob valide WSDL.xml !!!
 
-		if (uris != null) {
-			for (String uri : uris) {
-				// Hier überprüfen, ob valide WSDL.xml !!!
-
-				WsdlResult r = new WsdlResult(uri);
 				int numberOfHits = 0;
-				Document doc = dBuilder.parse(uri);
+				Document doc = dBuilder.parse(r.getUri());
 				doc.getDocumentElement().normalize();
 
-				// Keywords zählen in Wsdl.xml
+				// Keywords zï¿½hlen in Wsdl.xml
 				numberOfHits += countKeywordsInDoc(doc, "wsdl:message", "name");
 				numberOfHits += countKeywordsInDoc(doc, "wsdl:documentation");
 
-				r.setNumberOfHits(numberOfHits);
+				r.setScore(numberOfHits);
 				resultSet.add(r);
 			}
 		}
@@ -68,7 +66,7 @@ public class FilterByIncludedWords implements FilterStrategy {
 		int numberOfHits = 0;
 		NodeList nodes = doc.getElementsByTagName(tag);
 
-		// Für alle Knoten mit Tag tag
+		// Fï¿½r alle Knoten mit Tag tag
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
 
@@ -85,12 +83,12 @@ public class FilterByIncludedWords implements FilterStrategy {
 						// Falls Attribut in Tag in Wsdl existiert
 						if (attributeValue != null) {
 
-							// Zähle enthaltener KeyWords
+							// Zï¿½hle enthaltener KeyWords
 							numberOfHits += countKeywords(attributeValue);
 						}
 					}
 				}
-			} // Suche außerdem immer im TextContent eines Knoten
+			} // Suche auï¿½erdem immer im TextContent eines Knoten
 			if (node.getTextContent() != "") {
 				numberOfHits += countKeywords(node.getTextContent());
 			}
@@ -111,6 +109,16 @@ public class FilterByIncludedWords implements FilterStrategy {
 
 	public List<String> getFilterWords() {
 		return keyWords;
+	}
+	
+	@Override
+	public void addKeyWord(String keyWord) {
+		keyWords.add(keyWord);
+	}
+	
+	@Override
+	public void deleteAllKeyWords() {
+		keyWords = new LinkedList<String>();
 	}
 
 	public void addFilterString(String string) {

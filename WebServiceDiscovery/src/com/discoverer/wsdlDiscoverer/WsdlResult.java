@@ -1,23 +1,21 @@
 package com.discoverer.wsdlDiscoverer;
 
-import java.util.Comparator;
-
 public class WsdlResult implements Comparable<WsdlResult> {
 	
 	private String uri;
-	private int numberOfHits;
+	private int score;
 	
 	public WsdlResult(String uri) {
 		this.uri = uri;
-		this.numberOfHits = 0;
+		this.score = 0;
 	}
 	
 	public int getNumberOfHits() {
-		return numberOfHits;
+		return score;
 	}
 	
-	public void setNumberOfHits(int numberOfHits) {
-		this.numberOfHits = numberOfHits;
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	public String getUri() {
@@ -29,9 +27,9 @@ public class WsdlResult implements Comparable<WsdlResult> {
 		if (o == null) {
 			return 0;
 		}
-		if (o.numberOfHits < this.numberOfHits) {
+		if (o.score < this.score) {
 			return -1;
-		} else if (o.numberOfHits > this.numberOfHits) {
+		} else if (o.score > this.score) {
 			return 1;
 		}
 		return 0;

@@ -10,6 +10,10 @@ import org.xml.sax.SAXException;
 
 public interface FilterStrategy {
 	
-	public Set<WsdlResult> filterWsdls(List<String> wsdls)  throws SAXException, IOException;
+	public Set<WsdlResult> filterWsdls(Set<WsdlResult> resultSet)  throws SAXException, IOException;
+	
+	public void addKeyWord(String keyWord);
+	
+	public void deleteAllKeyWords();
 
 }
