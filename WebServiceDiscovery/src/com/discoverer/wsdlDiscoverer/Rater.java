@@ -1,8 +1,10 @@
 package com.discoverer.wsdlDiscoverer;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -18,7 +20,7 @@ public class Rater {
 
 	}
 
-	public Set<WsdlResult> rate(List<String> wsdls, List<String> bpmnKeyWords) {
+	public Set<WsdlResult> rate(List<String> wsdls, Map<String, Integer> bpmnKeyWords) {
 
 		Set<WsdlResult> resultSet = new TreeSet<WsdlResult>();
 
@@ -32,9 +34,7 @@ public class Rater {
 
 			// Prepare Filter for Filtering with the new bpmn keywords
 			filter.deleteAllKeyWords();
-			for (String keyWord : bpmnKeyWords) {
-				filter.addKeyWord(keyWord);
-			}
+			filter.addKeyWords(bpmnKeyWords);
 
 			// score the wsdls in resultSet by using the current filter
 			try {

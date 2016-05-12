@@ -10,7 +10,7 @@ public class WsdlResult implements Comparable<WsdlResult> {
 		this.score = 0;
 	}
 	
-	public int getNumberOfHits() {
+	public int getScore() {
 		return score;
 	}
 	
@@ -24,15 +24,13 @@ public class WsdlResult implements Comparable<WsdlResult> {
 
 	@Override
 	public int compareTo(WsdlResult o) {
-		if (o == null) {
-			return 0;
-		}
 		if (o.score < this.score) {
 			return -1;
 		} else if (o.score > this.score) {
 			return 1;
 		}
-		return 0;
+		return o.uri.compareTo(this.uri);
+		
 	}
 
 

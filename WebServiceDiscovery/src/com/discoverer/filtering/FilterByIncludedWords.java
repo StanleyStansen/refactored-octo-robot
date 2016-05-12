@@ -2,8 +2,10 @@ package com.discoverer.filtering;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -20,15 +22,15 @@ import com.discoverer.wsdlDiscoverer.*;
 
 public class FilterByIncludedWords extends Filter {
 
-	private List<String> keyWords;
+	private Map<String, Integer> keyWords;
 	DocumentBuilderFactory dbFactory;
 	DocumentBuilder dBuilder;
 
 	public FilterByIncludedWords() {
-		this(new LinkedList<String>());
+		this(new HashMap<String, Integer>());
 	}
 
-	public FilterByIncludedWords(List<String> keyWords) {
+	public FilterByIncludedWords(Map<String, Integer> keyWords) {
 		this.keyWords = keyWords;
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		try {
@@ -43,9 +45,8 @@ public class FilterByIncludedWords extends Filter {
 		
 		if (resultSet != null) {
 			for (WsdlResult r : resultSet) {
-				// Hier �berpr�fen, ob valide WSDL.xml !!!
 
-				int numberOfHits = 0;
+				int numberOfHits = r.getScore();
 				Document doc = dBuilder.parse(r.getUri());
 				doc.getDocumentElement().normalize();
 
@@ -54,7 +55,6 @@ public class FilterByIncludedWords extends Filter {
 				numberOfHits += countKeywordsInDoc(doc, "wsdl:documentation");
 
 				r.setScore(numberOfHits);
-				resultSet.add(r);
 			}
 		}
 		return resultSet;
@@ -98,7 +98,7 @@ public class FilterByIncludedWords extends Filter {
 
 	private int countKeywords(String string) {
 		int numberOfHits = 0;
-		for (String key : keyWords) {
+		for (String key : keyWords.keySet()) {
 			CharSequence c = key.subSequence(0, key.length());
 			if (string.contains(c)) {
 				numberOfHits++;
@@ -106,34 +106,16 @@ public class FilterByIncludedWords extends Filter {
 		}
 		return numberOfHits;
 	}
-
-	public List<String> getFilterWords() {
-		return keyWords;
-	}
-	
-	@Override
-	public void addKeyWord(String keyWord) {
-		keyWords.add(keyWord);
-	}
 	
 	@Override
 	public void deleteAllKeyWords() {
-		keyWords = new LinkedList<String>();
+		keyWords = new HashMap<String, Integer>();
 	}
 
-	public void addFilterString(String string) {
-		keyWords.add(string);
-	}
-
-	public void addFilterString(List<String> strings) {
-		keyWords.addAll(strings);
-	}
-
-	public void addFilterWords(String words) {
-		String[] singleWords = words.split(" ");
-		for (String word : singleWords) {
-			keyWords.add(word);
-		}
+	@Override
+	public void addKeyWords(Map<String, Integer> keyWords) {
+		this.keyWords.putAll(keyWords); //Operation ist undefiniert, falls keyWords währenddessen verändert wird
+		
 	}
 
 }

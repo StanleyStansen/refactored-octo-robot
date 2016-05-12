@@ -2,6 +2,7 @@ package com.discoverer.filtering;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.discoverer.wsdlDiscoverer.*;
@@ -12,7 +13,7 @@ public interface FilterStrategy {
 	
 	public Set<WsdlResult> filterWsdls(Set<WsdlResult> resultSet)  throws SAXException, IOException;
 	
-	public void addKeyWord(String keyWord);
+	public void addKeyWords(Map<String, Integer> keyWords);
 	
 	public void deleteAllKeyWords();
 
