@@ -29,8 +29,12 @@ public class WsdlResult implements Comparable<WsdlResult> {
 		} else if (o.score > this.score) {
 			return 1;
 		}
-		return o.uri.compareTo(this.uri);
-		
+		return o.uri.compareTo(this.uri);	
+	}
+	
+	@Override
+	public String toString() {
+		return "Score: " + score + ", URI: " + uri;
 	}
 
 

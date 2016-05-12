@@ -45,14 +45,14 @@ public class FilterByIncludedWords extends Filter {
 		
 		if (resultSet != null) {
 			for (WsdlResult r : resultSet) {
-
+				
 				int numberOfHits = r.getScore();
 				Document doc = dBuilder.parse(r.getUri());
 				doc.getDocumentElement().normalize();
 
 				// Keywords z�hlen in Wsdl.xml
-				numberOfHits += countKeywordsInDoc(doc, "wsdl:message", "name");
-				numberOfHits += countKeywordsInDoc(doc, "wsdl:documentation");
+				numberOfHits = numberOfHits + countKeywordsInDoc(doc, "wsdl:message", "name");
+				numberOfHits = numberOfHits + countKeywordsInDoc(doc, "wsdl:documentation");
 
 				r.setScore(numberOfHits);
 			}
