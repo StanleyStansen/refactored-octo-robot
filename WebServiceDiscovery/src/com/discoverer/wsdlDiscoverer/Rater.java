@@ -26,28 +26,36 @@ public class Rater {
 
 	public Set<WsdlResult> rate(List<String> wsdls, String bpmnFilePath) {
 
-		Map<String, Integer> keyWords = bpmnInputStrategy.getKeywords(bpmnFilePath);
-		Set<WsdlResult> resultSet = new TreeSet<WsdlResult>();
-		
+		// get Keywords
+		Map<String, Integer> keyWords = null;
+		try {
+			keyWords = bpmnInputStrategy.getKeywords(bpmnFilePath);
+		} catch (SAXException | IOException e1) {
+			System.err.println("Bpmn model could not be loaded.");
+			e1.printStackTrace();
+		}
 
 		// Setup ResultSet
+		Set<WsdlResult> resultSet = new TreeSet<WsdlResult>();
 		for (String wsdl : wsdls) {
 			resultSet.add(new WsdlResult(wsdl));
 		}
 
 		// score every wsdl-url in the resultSet using every filter
-		for (FilterStrategy filter : filterStrategies) {
+		if (keyWords != null) {
+			for (FilterStrategy filter : filterStrategies) {
 
-			// Prepare Filter for Filtering with the new bpmn keywords
-			filter.deleteAllKeyWords();
-			filter.addKeyWords(keyWords);
+				// Prepare Filter for Filtering with the new bpmn keywords
+				filter.deleteAllKeyWords();
+				filter.addKeyWords(keyWords);
 
-			// score the wsdls in resultSet by using the current filter
-			try {
-				resultSet = filter.filterWsdls(resultSet);
-			} catch (Exception e) {
-				System.err.println("A wsdl file could not be loaded.");
-				e.printStackTrace();
+				// score the wsdls in resultSet by using the current filter
+				try {
+					resultSet = filter.filterWsdls(resultSet);
+				} catch (SAXException | IOException e) {
+					System.err.println("A wsdl file could not be loaded.");
+					e.printStackTrace();
+				}
 			}
 		}
 		return resultSet;
@@ -58,7 +66,7 @@ public class Rater {
 		filterStrategies.add(strategy);
 		return this;
 	}
-	
+
 	public Rater setBpmnStrategy(BpmnStrategyType bpmnStrategyType) {
 		bpmnInputStrategy = BpmnInput.create(bpmnStrategyType);
 		return this;
