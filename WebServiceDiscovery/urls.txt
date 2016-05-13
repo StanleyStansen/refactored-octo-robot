@@ -26,7 +26,6 @@ http://www.webservicex.net/usaddressverification.asmx?WSDL
 http://www.webservicex.net/NAICS.asmx?WSDL
 http://www.webservicex.net/periodictable.asmx?WSDL
 http://www.webservicex.net/uszip.asmx?WSDL
-http://www.webservicex.net/icd9.asmx?WSDL
 http://www.webservicex.net/icd9drug.asmx?WSDL
 http://www.webservicex.net/hcpcs.asmx?WSDL
 http://www.webservicex.net/uklocation.asmx?WSDL
