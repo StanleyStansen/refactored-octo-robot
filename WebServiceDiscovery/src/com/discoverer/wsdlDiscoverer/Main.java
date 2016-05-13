@@ -22,7 +22,7 @@ public class Main {
 		Set<WsdlResult> resultSet = new Rater()
 				.setBpmnStrategy(BpmnStrategyType.BpmnNamesOfAllTags)
 				.addFilterStrategy(FilterType.FilterByIncludedWords)
-				.rate(uris, "BpmnArztpraxis.xml");
+				.rate(uris, "BpmnTest.xml");
 
 		//Sorting resultSet
 		List<WsdlResult> list = new LinkedList<WsdlResult>(resultSet);

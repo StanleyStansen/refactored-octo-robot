@@ -13,7 +13,7 @@ import org.xml.sax.SAXException;
 
 public class BpmnNamesOfAllTags extends BpmnInput {
 	
-	String[] fillerWords = {"an", "An", "und", "am", "bei", "zum", "Dr."};
+	String[] fillerWords = {"although", "and", "as", "because", "but", "either", "even", "if", "though", "how", "as", "in", "or", "since", "for", "when", "well", "so", "Dr.", "of", "from", "for", ""};
 	Map<String, Integer> map;
 	
 	@Override
@@ -23,12 +23,20 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 		Document doc = getBpmnDocument(filePath);
 		setKeyWordsFromDoc(doc, "userTask", 10, "name");
 		setKeyWordsFromDoc(doc, "sendTask", 10, "name");
+		setKeyWordsFromDoc(doc, "text", 10);
+		setKeyWordsFromDoc(doc, "messageFlow", 8, "name");
 		setKeyWordsFromDoc(doc, "participant", 4, "name");
 		setKeyWordsFromDoc(doc, "lane", 4, "name");
-		setKeyWordsFromDoc(doc, "sendTask", 10, "name");
+		setKeyWordsFromDoc(doc, "startEvent", 2, "name");
+		setKeyWordsFromDoc(doc, "endEvent", 2, "name");
+		setKeyWordsFromDoc(doc, "intermediateCatchEvent", 2, "name");
+		setKeyWordsFromDoc(doc, "manualTask", 2, "name");
+		setKeyWordsFromDoc(doc, "boundaryEvent", 2, "name");
+		setKeyWordsFromDoc(doc, "exclusiveGateway", 2, "name");
+		setKeyWordsFromDoc(doc, "subProcess", 2, "name");
 		
 		for (String s : map.keySet()) {
-			System.out.println(s);
+			System.out.println(s + ": " + map.get(s));
 		}
 		
 		return map;
@@ -43,12 +51,18 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 
 				// Gehe alle Attribute durch
+				if (attributes != null) {
 				for (String attribute : attributes) {
 					String attributeValue = ((Element) node).getAttribute(attribute);
 
 					// Falls Attribut in Tag in Wsdl existiert
 					if (attributeValue != null) {
 						setKeyWordsFromString(attributeValue, score);
+					}
+				}
+				} else {
+					if (node.getTextContent() != "") {
+						setKeyWordsFromString(node.getTextContent(), score);
 					}
 				}
 			}
@@ -60,7 +74,7 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 		List<String> result = new LinkedList<String>();
 		String[] words = value.split(" ");
 		for (String word : words) {
-			for (String s : word.split("&#10;")) {
+			for (String s : word.split("\n")) {
 				if (!isFillerWords(s)) {
 					map.put(s, score);
 				}

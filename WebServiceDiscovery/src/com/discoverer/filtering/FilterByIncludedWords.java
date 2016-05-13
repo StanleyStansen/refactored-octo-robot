@@ -45,7 +45,7 @@ public class FilterByIncludedWords extends Filter {
 		
 		if (resultSet != null) {
 			for (WsdlResult r : resultSet) {
-				
+				System.out.println("checking url " + r.getUri());
 				int numberOfHits = r.getScore();
 				Document doc = dBuilder.parse(r.getUri());
 				doc.getDocumentElement().normalize();
