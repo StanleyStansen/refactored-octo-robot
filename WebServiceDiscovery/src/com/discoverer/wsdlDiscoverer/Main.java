@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import com.discoverer.bpmnInput.BpmnStrategyType;
 import com.discoverer.filtering.FilterType;
 
 public class Main {
@@ -17,15 +18,11 @@ public class Main {
 		// Setup List of URIs of WSDLs
 		List<String> uris = WsdlDiscoverer.getWsdlUrlsFromFile("urls.txt");
 		
-		// Create Filter with keywords (in this case "stock" for one search
-		Map<String, Integer> bpmnKeyWords = new HashMap<String, Integer>();
-		bpmnKeyWords.put("Stock", 4);
-		
-		// Rate WSDLs according to BPMN keywords
-		Rater r = new Rater();
-		r.addFilterStrategy(FilterType.FilterByIncludedWords);
-				
-		Set<WsdlResult> resultSet = r.rate(uris, bpmnKeyWords);
+		// Setup Filters and BpmnInputStrategies and rate wsdl uris
+		Set<WsdlResult> resultSet = new Rater()
+				.setBpmnStrategy(BpmnStrategyType.BpmnNamesOfAllTags)
+				.addFilterStrategy(FilterType.FilterByIncludedWords)
+				.rate(uris, "BpmnArztpraxis.xml");
 
 		//Sorting resultSet
 		List<WsdlResult> list = new LinkedList<WsdlResult>(resultSet);
