@@ -71,12 +71,17 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 	}
 	
 	private void setKeyWordsFromString(String value, int score) {
-		List<String> result = new LinkedList<String>();
 		String[] words = value.split(" ");
 		for (String word : words) {
 			for (String s : word.split("\n")) {
 				if (!isFillerWords(s)) {
-					map.put(s, score);
+					if (map.containsKey(s)) {
+						if (map.get(s) < score) {
+							map.put(s, score);
+						}
+					} else {
+						map.put(s, score);
+					}
 				}
 			}
 		}
