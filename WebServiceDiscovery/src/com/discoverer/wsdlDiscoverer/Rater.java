@@ -19,9 +19,8 @@ public class Rater {
 
 	private List<FilterStrategy> filterStrategies = new LinkedList<FilterStrategy>();
 	private BpmnStrategy bpmnInputStrategy;
-
+	
 	public Rater() {
-
 	}
 
 	public Set<WsdlResult> rate(List<String> wsdls, String bpmnFilePath) {

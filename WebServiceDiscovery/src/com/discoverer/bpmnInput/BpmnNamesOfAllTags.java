@@ -35,10 +35,6 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 		setKeyWordsFromDoc(doc, "exclusiveGateway", 2, "name");
 		setKeyWordsFromDoc(doc, "subProcess", 2, "name");
 		
-		for (String s : map.keySet()) {
-			System.out.println(s + ": " + map.get(s));
-		}
-		
 		return map;
 	}
 	
@@ -74,7 +70,7 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 		String[] words = value.split(" ");
 		for (String word : words) {
 			for (String s : word.split("\n")) {
-				if (!isFillerWords(s)) {
+				if (!isFillerWords(s) && isNotANumber(s)) {
 					if (map.containsKey(s)) {
 						if (map.get(s) < score) {
 							map.put(s, score);
@@ -96,12 +92,8 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 		return false;
 	}
 	
-	/*
-	@Override
-	public Map<String, Integer> getKeywords(String filePath) {
-		Map<String, Integer> keyWords = new HashMap<String, Integer>();
-		keyWords.put("Stock", 4);
-		return keyWords;
-	}*/
+	private boolean isNotANumber(String s) {
+		return (s.matches("\\D+") ? true : false);
+	}
 	
 }
