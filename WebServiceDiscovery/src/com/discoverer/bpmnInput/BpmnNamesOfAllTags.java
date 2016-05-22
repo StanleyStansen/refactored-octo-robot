@@ -25,7 +25,7 @@ public class BpmnNamesOfAllTags extends BpmnInput {
 		setKeyWordsFromDoc(doc, "sendTask", 10, "name");
 		setKeyWordsFromDoc(doc, "text", 10);
 		setKeyWordsFromDoc(doc, "messageFlow", 8, "name");
-		setKeyWordsFromDoc(doc, "participant", 4, "name");
+		setKeyWordsFromDoc(doc, "participant", 10, "name");
 		setKeyWordsFromDoc(doc, "lane", 4, "name");
 		setKeyWordsFromDoc(doc, "startEvent", 2, "name");
 		setKeyWordsFromDoc(doc, "endEvent", 2, "name");
