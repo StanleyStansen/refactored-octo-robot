@@ -1,20 +1,14 @@
 package com.discoverer.filtering;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -76,11 +70,11 @@ public class FilterByIncludedWords extends Filter {
 				// Falls Knoten ein Attribut hat
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 
-					// Gehe alle Attribute durch
+					// Gehe alle übergebenen Attribute durch
 					for (String attribute : attributes) {
 						String attributeValue = ((Element) node).getAttribute(attribute);
 
-						// Falls Attribut in Tag in Wsdl existiert
+						// Falls übergebenes Attribut im Tag in der Wsdl existiert
 						if (attributeValue != null) {
 
 							// Zï¿½hle enthaltener KeyWords
@@ -101,7 +95,7 @@ public class FilterByIncludedWords extends Filter {
 		for (String key : keyWords.keySet()) {
 			CharSequence c = key.subSequence(0, key.length());
 			if (string.contains(c)) {
-				numberOfHits++;
+				numberOfHits += keyWords.get(key);
 			}
 		}
 		return numberOfHits;
