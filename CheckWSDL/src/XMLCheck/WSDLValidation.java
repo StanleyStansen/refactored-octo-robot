@@ -18,7 +18,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class WSDLValidation {
-	
+	/**
+	 * Klasse zur Prüfung von WSDL-Dokumenten
+	 * @param args Kommandozeilenparameter
+	 */
 	public static void main(String[] args) {
 		// XML Richtig beides
 		System.out.println("Test 1: Wohlgeformt und Valide");
@@ -30,15 +33,21 @@ public class WSDLValidation {
 		System.out.println("PrÃ¼fung auf Wohlgeformtheit: " + isWellFormedXMLDocument("src/WSDL-notValid.xml"));
 		System.out.println("PrÃ¼fung auf ValiditÃ¤t: " + isValidateXMLSchema("http://schemas.xmlsoap.org/wsdl/", "src/WSDL-notValid.xml"));
 		System.out.println("---------------------------------");
-		// Nicht Wohlgeformed, nicht valide
+		// Nicht Wohlgeformt, nicht valide
 		System.out.println("Test 3: NICHT Wohlgeformt und NICHT Valide");
 		System.out.println("PrÃ¼fung auf Wohlgeformtheit: " + isWellFormedXMLDocument("src/WSDL-notWellformed-notValid.xml"));
 		System.out.println("PrÃ¼fung auf ValiditÃ¤t: " + isValidateXMLSchema("http://schemas.xmlsoap.org/wsdl/", "src/WSDL-notWellformed-notValid.xml"));
 		System.out.println("---------------------------------");
 	}
 	
-	
 	/* http://www.edankert.com/validate.html */
+	/**
+	 * Methode zur Prüfung von XML-Dokumenten auf Wohlgeformtheit
+	 * @param xmlPath Pfad zum zu prüfenden XML-Dokument
+	 * @author D048162
+	 * @version 1.0
+	 * @return Bewertung der Wohlgeformtheit des geprüften XML-Dokuments
+	 */
 	 public static boolean isWellFormedXMLDocument(String xmlPath){
 		 /* Ein XML-Dokument heiÃŸt wohlgeformt, wenn
 		  * es einen Prolog mit der XML-Version enthÃ¤lt
@@ -70,6 +79,14 @@ public class WSDLValidation {
 	 }
 	 
 	 /* http://www.journaldev.com/895/how-to-validate-xml-against-xsd-in-java */
+/**
+ * Methode zur Prüfung von XML-Dokumenten auf Wohlgeformtheit
+ * @param xsdPath Pfad zum zu verwendenden XML-Schema
+ * @param xmlPath Pfad zum zu prüfenden XML-Dokument
+ * @author D048162
+ * @version 1.0
+ * @return Bewertung der Validitär des geprüften XML-Dokuments
+ */
 	 public static boolean isValidateXMLSchema(String xsdPath, String xmlPath){
 
         try {
