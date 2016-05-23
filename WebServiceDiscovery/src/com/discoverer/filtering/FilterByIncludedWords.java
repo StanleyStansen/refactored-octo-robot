@@ -14,16 +14,35 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import com.discoverer.wsdlDiscoverer.*;
 
+/**
+ * Die Klasse implementiert eine konkrete Filterstrategie. Bei
+ * FilterByIncludedWords bewertet der Filter jede Wsdl-xml-Datei mittels
+ * gewichteten Schlüsselworten. Es wird dabei geprüft, ob die Wörter in der
+ * Wsdl-xml-Datei enthalten sind, oder nicht.
+ * 
+ * @author igt
+ *
+ */
 public class FilterByIncludedWords extends Filter {
 
 	private Map<String, Integer> keyWords;
 	DocumentBuilderFactory dbFactory;
 	DocumentBuilder dBuilder;
 
+	/**
+	 * Mit diesem Konstruktor kann ein Filter ohne Schlüsselworte erstellt
+	 * werden.
+	 */
 	public FilterByIncludedWords() {
 		this(new HashMap<String, Integer>());
 	}
 
+	/**
+	 * In diesem Konstruktor wird dem erstellten Filter direkt eine Liste an
+	 * Schlüsselwörtern übergeben.
+	 * 
+	 * @param keyWords
+	 */
 	public FilterByIncludedWords(Map<String, Integer> keyWords) {
 		this.keyWords = keyWords;
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -36,7 +55,7 @@ public class FilterByIncludedWords extends Filter {
 
 	@Override
 	public Set<WsdlResult> filterWsdls(Set<WsdlResult> resultSet) throws SAXException, IOException {
-		
+
 		if (resultSet != null) {
 			for (WsdlResult r : resultSet) {
 				System.out.println("checking url " + r.getUri());
@@ -55,6 +74,22 @@ public class FilterByIncludedWords extends Filter {
 
 	}
 
+	/**
+	 * Die Methode zählt und bewertet das Vorkommen aller Schlüsselworte des
+	 * Filters in einem konkreten tag des übergebenen Dokumentes. Es werden die
+	 * Vorkommen in allen Knoten dieses tags in die Bewertung einbezogen.
+	 * 
+	 * @param doc
+	 *            - Xml-Dokument, welches untersucht werden soll
+	 * @param tag
+	 *            - Knoten eines spezifischen tags, welche untersucht werden
+	 *            sollen
+	 * @param attributes
+	 *            - Attribute des tags, welche untersucht werden sollen -
+	 *            optional
+	 * @return - Die Bewertung des Dokumentes hinsichtlich eines spezifischen
+	 *         Tags
+	 */
 	private int countKeywordsInDoc(Document doc, String tag, String... attributes) {
 
 		int numberOfHits = 0;
@@ -70,11 +105,12 @@ public class FilterByIncludedWords extends Filter {
 				// Falls Knoten ein Attribut hat
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 
-					// Gehe alle �bergebenen Attribute durch
+					// Gehe alle �bergebenen Attribute durch
 					for (String attribute : attributes) {
 						String attributeValue = ((Element) node).getAttribute(attribute);
 
-						// Falls �bergebenes Attribut im Tag in der Wsdl existiert
+						// Falls �bergebenes Attribut im Tag in der Wsdl
+						// existiert
 						if (attributeValue != null) {
 
 							// Z�hle enthaltener KeyWords
@@ -90,6 +126,15 @@ public class FilterByIncludedWords extends Filter {
 		return numberOfHits;
 	}
 
+	/**
+	 * Die Methode addiert das Gewicht der gefundenen Schlüsselworte in einer
+	 * Zeichenkette
+	 * 
+	 * @param string
+	 *            - Zeichenkette, die auf Schlüsselworte überprüft werden soll
+	 * @return - Summe der Gewichte der in der Zeichenkette vorkommenden
+	 *         Schlüsselworte. Pro Vorkommen wird das jeweilige Gewicht addiert
+	 */
 	private int countKeywords(String string) {
 		int numberOfHits = 0;
 		for (String key : keyWords.keySet()) {
@@ -100,7 +145,7 @@ public class FilterByIncludedWords extends Filter {
 		}
 		return numberOfHits;
 	}
-	
+
 	@Override
 	public void deleteAllKeyWords() {
 		keyWords = new HashMap<String, Integer>();
@@ -108,8 +153,9 @@ public class FilterByIncludedWords extends Filter {
 
 	@Override
 	public void addKeyWords(Map<String, Integer> keyWords) {
-		this.keyWords.putAll(keyWords); //Operation ist undefiniert, falls keyWords währenddessen verändert wird
-		
+		this.keyWords.putAll(keyWords); // Operation ist undefiniert, falls
+										// keyWords währenddessen verändert wird
+
 	}
 
 }
