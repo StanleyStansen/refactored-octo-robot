@@ -36,7 +36,9 @@ public class Main {
         
 	}
 	
-	/** Nötige Funktionen für Verkäufer **/
+	/**
+	 * Methode um alle Kunden nacheinander auf der Konsole auszugeben.
+	 */
 	private static void showAllCustomers() {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -51,7 +53,10 @@ public class Main {
 	    }
 	}
 	
-	
+	/**
+	 * Methode um eine Liste aller Kunden zu erstellen.
+	 * Gibt eine Liste zurück.
+	 */
 	private static List listCustomers() {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -61,6 +66,10 @@ public class Main {
 	    return customers;
 	}
 	
+	/**
+	 * Methode um über die KundenID das Kunden-Objekt zu übergeben.
+	 * Gibt gesuchten Kunden als Objekt zurück.
+	 */
 	private static Customer getCustomer(int id) {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -70,6 +79,11 @@ public class Main {
 	    return customer;
 	}
 
+	/**
+	 * Methode um eine Liste aller Bestellungen eines Kundenobjekts zu erstellen.
+	 * @param customer: Kundenobjekt zu welchem die Bestellungen gesucht sind.
+	 * @return Liste aller Bestellungen
+	 */
 	private static List listOrdersOfCustomer(Customer customer) {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -80,6 +94,10 @@ public class Main {
 	    return orders;
 	}
 	
+	/**
+	 * Methode berechnet den aktuellen Gesamtumsatz.
+	 * @return: Gesamtumsatz als Double.
+	 */
 	private static double totalTurnover() {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -92,7 +110,11 @@ public class Main {
 		return (double) results.get(0);
 	}
 	
-
+	/**
+	 * Umsatz eines bestimmten Kunden
+	 * @param customer: Kundenobjekt zu welchem der Umsatz gesucht wird
+	 * @return Umsatz des Kunden als Double.
+	 */
 	private static double turnoverOfCustomer(Customer customer) {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -105,7 +127,11 @@ public class Main {
 		return (double) results.get(0);
 	}
 
-
+	/**
+	 * Umsatz der Peergroup eines bestimmten Kundens.
+	 * @param customer: Kunde mit welchem die Peer-Group bestimmt wird
+	 * @return: Umsatz der Peergroup des Kunden als double.
+	 */
 	private static double turnoverOfPeergroup(Customer customer) {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();
@@ -140,6 +166,11 @@ public class Main {
 		return turnover;
 	}
 	
+	/**
+	 * Methode zur Prüfung des Rabatts für einen Kunden
+	 * @param c: Kunde für welchen der Rabatt geprüft werden soll.
+	 * @return: Positives oder negatives Ergebnis für die Rabatt-Prüfung als boolean.
+	 */
 	private static boolean checkDiscount(Customer c) {
 	    SessionFactory sf = HibernateUtil.getSessionFactory();
 	    Session session = sf.openSession();

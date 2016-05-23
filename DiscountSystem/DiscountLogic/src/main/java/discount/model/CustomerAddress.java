@@ -7,13 +7,17 @@ public class CustomerAddress {
 	private String postcode;
 	private String city;
 	
-	/* Constructor */
 	
-	
+	/**
+	 * Konstruktor der Klasse
+	 */
 	public CustomerAddress () {
 		super();
 	}
 	
+	/**
+	 * Konstruktor der Klasse mit den Attributen customerId, street, postcode und city.
+	 */
 	public CustomerAddress(int customerId, String street, String postcode, String city) {
 		this.id = customerId;
 		this.street = street;
