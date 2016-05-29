@@ -1,6 +1,7 @@
 package com.discoverer.filtering;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -54,7 +55,7 @@ public class FilterByIncludedWords extends Filter {
 	}
 
 	@Override
-	public Set<WsdlResult> filterWsdls(Set<WsdlResult> resultSet) throws SAXException, IOException {
+	public Collection<WsdlResult> filterWsdls(Collection<WsdlResult> resultSet) throws SAXException, IOException {
 
 		if (resultSet != null) {
 			for (WsdlResult r : resultSet) {

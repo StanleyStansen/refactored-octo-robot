@@ -3,6 +3,7 @@ package com.discoverer.tests;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class filterByIncludedWordsTest {
 		FilterStrategy filterStrategy = Filter.createFilter(FilterType.FilterByIncludedWords);
 		filterStrategy.addKeyWords(keyWords);
 		
-		Set<WsdlResult> resultSet = new TreeSet<WsdlResult>();
+		Collection<WsdlResult> resultSet = new TreeSet<WsdlResult>();
 		resultSet.add(new WsdlResult(testWsdlUri));
 		
 		resultSet = filterStrategy.filterWsdls(resultSet);
@@ -52,7 +53,7 @@ public class filterByIncludedWordsTest {
 		List<WsdlResult> list = new LinkedList<WsdlResult>(resultSet);
 		WsdlResult result = list.get(0);
 		assertEquals(testWsdlUri, result.getUri());
-		assertEquals(51, result.getScore());
+		assertEquals(480, result.getScore());
 		
 		System.out.println("Score: " + result.getScore() + ", WSDL: "+ result.getUri());
 		
@@ -69,25 +70,24 @@ public class filterByIncludedWordsTest {
 		expected.put("miles", 2);
 		expected.put("than", 2);
 		expected.put("weather", 8);
-		expected.put("Directory", 4);
-		expected.put("Directory", 4);
+		expected.put("Directory", 10);
 		expected.put("length", 8);
 		expected.put("runway", 8);
 		expected.put("forecast", 8);
 		expected.put("completed", 2);
 		expected.put("airport", 8);
-		expected.put("Weather", 4);
-		expected.put("Sunset", 4);
-		expected.put("Travel", 4);
+		expected.put("Weather", 10);
+		expected.put("Sunset", 10);
+		expected.put("Travel", 10);
 		expected.put("longer", 2);
-		expected.put("service", 4);
+		expected.put("service", 10);
 		expected.put("sunset", 8);
-		expected.put("Airport", 4);
+		expected.put("Airport", 10);
 		expected.put("name", 8);
-		expected.put("Fax", 8);
-		expected.put("rise", 8);
+		expected.put("Fax", 10);
+		expected.put("rise", 10);
 		expected.put("travel", 2);
-		expected.put("agency", 4);
+		expected.put("agency", 10);
 		
 		return expected;
 	}

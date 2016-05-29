@@ -6,5 +6,6 @@ package com.discoverer.filtering;
  *
  */
 public enum FilterType {
-	FilterByIncludedWords
+	FilterByIncludedWords,
+	FilterReduceResultSet
 }

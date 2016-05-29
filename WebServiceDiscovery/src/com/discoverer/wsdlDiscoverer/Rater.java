@@ -1,6 +1,8 @@
 package com.discoverer.wsdlDiscoverer;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +48,7 @@ public class Rater {
 	 *            Wsdls herangezogen werden soll.
 	 * @return
 	 */
-	public Set<WsdlResult> rate(List<String> wsdls, String bpmnFilePath) {
+	public List<WsdlResult> rate(List<String> wsdls, String bpmnFilePath) {
 
 		// get Keywords
 		Map<String, Integer> keyWords = null;
@@ -58,7 +60,7 @@ public class Rater {
 		}
 
 		// Setup ResultSet
-		Set<WsdlResult> resultSet = new TreeSet<WsdlResult>();
+		Collection<WsdlResult> resultSet = new TreeSet<WsdlResult>();
 		for (String wsdl : wsdls) {
 			resultSet.add(new WsdlResult(wsdl));
 		}
@@ -80,7 +82,9 @@ public class Rater {
 				}
 			}
 		}
-		return resultSet;
+		
+		List<WsdlResult> list = new LinkedList<WsdlResult>(resultSet);
+		return list;
 	}
 
 	/**
@@ -93,6 +97,22 @@ public class Rater {
 	 */
 	public Rater addFilterStrategy(FilterType filterStrategy) {
 		FilterStrategy strategy = Filter.createFilter(filterStrategy);
+		filterStrategies.add(strategy);
+		return this;
+	}
+
+	/**
+	 * Die Methode erlaubt die Zuweisung einer FilterStrategie. Jede der
+	 * zugewiesenen FilterStrategien wird zur Bewertung der Wsdl-xml-Dateien
+	 * genutzt.
+	 * 
+	 * @param filterStrategy
+	 * @param numberOf
+	 *            Results - Anzahl der vom Filter zurückzugebenden Ergebnisse
+	 * @return
+	 */
+	public Rater addFilterStrategy(FilterType filterStrategy, int numberOfResults) {
+		FilterStrategy strategy = Filter.createFilter(filterStrategy, numberOfResults);
 		filterStrategies.add(strategy);
 		return this;
 	}

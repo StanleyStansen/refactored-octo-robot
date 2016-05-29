@@ -1,6 +1,7 @@
 package com.discoverer.filtering;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +25,7 @@ public interface FilterStrategy {
 	 * @throws SAXException
 	 * @throws IOException
 	 */
-	public Set<WsdlResult> filterWsdls(Set<WsdlResult> resultSet) throws SAXException, IOException;
+	public Collection<WsdlResult> filterWsdls(Collection<WsdlResult> resultSet) throws SAXException, IOException;
 
 	/**
 	 * Die Methode erlaubt das Hinzufügen von Schlüsselworten zu einem Filter
